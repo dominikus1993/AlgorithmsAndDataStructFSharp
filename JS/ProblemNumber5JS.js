@@ -1,0 +1,13 @@
+
+var data = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+
+var reverse = function(list) {
+	return list.reverse();
+}
+
+var main = function(list,func){
+	return func(list);
+}
+
+console.log(main(data,reverse))
+
