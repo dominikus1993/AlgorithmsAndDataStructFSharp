@@ -20,6 +20,4 @@
     console.log(main(data, countSeq));
 
 })();
-while (true) {
-    
-}
+
