@@ -1,5 +1,5 @@
 ﻿//Chose e or c letter from list
-let list = ['a';'b';'c';'d';'e']
+let list = ['a'..'e']
      
 [<EntryPoint>]
 let main argv =
