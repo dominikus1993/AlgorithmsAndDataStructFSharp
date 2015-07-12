@@ -1,6 +1,6 @@
 
+(function(){
 var data = ["aaaa","dupa","ala ma kota"];
-var text = "fdhfsfsd";
 var toCharArray = function(word){
 	return word.split('');
 }
@@ -20,4 +20,23 @@ var main = function(list,word,func){
 }
 
 console.log(main(data,'a',toCharArray))
+})();
+
+//shorter version 
+
+(function() {
+    var data = ["assasa", "sdadsad", "sassasa"];
+    
+    var count = function(list,letter) {
+        return data.join("").split("").filter(function(x) {
+            return x === letter;
+        }).length;
+    }
+
+    var main = function main(list,letter,func) {
+        return func(data,letter);
+    }
+
+    console.log(main(data,"a", count));
+})();
 
