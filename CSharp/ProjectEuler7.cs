@@ -10,7 +10,7 @@ namespace TestCSharp
     {
         public static bool IsPrime(int number)
         {
-            return Enumerable.Range(2, (int)Math.Sqrt(number)).Count(x=> number % x == 0) == 0;
+            return Enumerable.Range(2, (int)Math.Sqrt(number)).Count(x => number % x == 0) == 0;
         }
 
         public static IEnumerable<int> PrimeList()
@@ -28,9 +28,9 @@ namespace TestCSharp
 
         static void Main(string[] args)
         {
-            var a = PrimeList().Take(10001);
+            var nth = PrimeList().Take(10000);
 
-            Console.WriteLine(a.ToList()[10000]);
+            Console.WriteLine(nth.Last());
         }
     }
 }
