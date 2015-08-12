@@ -119,5 +119,5 @@ class Euler13 {
     }
 }
 
-console.log(new Euler13().getList().map((x) => { return +x; }).reduce((x,acc)=> { return acc + x; }).toString().split(".").join("").substring(0,10));
+console.log(new Euler13().getList().map((x) => { return `${x}`; }).reduce((x,acc)=> { return acc + x; }).toString().substring(0,10));
 while (true) { }
