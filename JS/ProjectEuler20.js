@@ -12,7 +12,7 @@ Euler20 = (function() {
         }
         this.getResult = function(num) {
             var res = that.factorial(num);
-            return parseFloat(res);
+            return res.toString(10);
         }
     }
 
