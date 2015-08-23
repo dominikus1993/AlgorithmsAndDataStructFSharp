@@ -1,14 +1,13 @@
 open System.IO
-
 // Learn more about F# at http://fsharp.net
 // See the 'F# Tutorial' project for more help.
 
-let myMap = 
+let myMap =
     ['A',1;
      'B',2;
      'C',3;
      'D',4;
-     'E',5;  
+     'E',5;
      'F',6;
      'G',7;
      'H',8;
@@ -35,20 +34,24 @@ let myMap =
     ]|>Map.ofList
 
 let myToCharArray(word:string) =
-    [for x in word -> x] 
-let sumLetterPositions (word:string, func:(string -> char list))= 
+    [for x in word -> x]
+
+let sumLetterPositions (word:string, func:(string -> char list))=
     let positions = func(word) |> List.map(fun x -> myMap.[x])
     positions  |> List.sum
 
-let nameList = 
+let nameList =
     File.ReadAllLines(@"C:\Users\domin_000\Documents\Visual Studio 2015\Projects\TestFSharp\TestFSharp\euler2.txt").[0].Split(',') |> Array.toList
- 
-let rec getResult (list,func) =
-    list |> List.map(fun x -> func(x,myToCharArray))
-        
-           
+
+
+let rec getResult2 (list, lengthList, acc)=
+     match list with
+     |[] -> acc
+     |head::tail ->  getResult2(tail,lengthList,acc@[sumLetterPositions(head,myToCharArray) * (lengthList  - (tail |> List.length))])
+
+
 [<EntryPoint>]
-let main argv = 
-    let res = getResult(nameList ,sumLetterPositions) |> List.sum
+let main argv =
+    let res = getResult2(nameList, nameList.Length, [])
     printfn "%A" res
-    0 // return an integer exit code 
+    0 // return an integer exit code
