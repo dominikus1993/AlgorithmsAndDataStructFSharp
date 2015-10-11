@@ -1,3 +1,5 @@
+import itertools
+
 def bin_to_dec(num):
     return int(num, 2)
 
@@ -14,6 +16,9 @@ def binary_operations(ip, func):
     res = func(ip.split(".")[::-1][0])
     return ip[0:26] + "." + res
 
+def ip_generator(num):
+    return "".join(map(lambda x: '.' if x % 9 == 0  else '0' ,[ x for x in range(num + 1,36)]))
+
 def mask_generator(num):
     return "".join(map(lambda x: '.' if x % 9 == 0  else '1' if x <= (num + 3) else '0' ,[ x for x in range(1,36)]))
 
@@ -22,7 +27,6 @@ def network_operations(ip,mask):
         zipped_list = zip(list(ip),list(mask))
         return "".join(map(lambda x: '.' if  x[0] == '.' or x[1] == '.' else '1' if filter_func(x[0], x[1]) else '0', zipped_list)) 
     return operations
-
 
 ip_and_mask =  "212.191.99.68 27".split(" ")
 ip_func = network_operations(ip_to_binary(ip_and_mask[0]),mask_generator(int(ip_and_mask[1])))
@@ -38,3 +42,13 @@ print("first host: " + first_host + " - " + binary_ip_to_dec(first_host))
 
 last_host = binary_operations(ip_func(lambda x,y: x == '1' or str(int(not bool(int(y)))) == '1'), lambda x: dec_to_bin(bin_to_dec(x) + 255))
 print("last host: " + last_host + " - " + binary_ip_to_dec(last_host))
+
+first_ip = ip_to_binary("212.191.99.68")
+second_ip = ip_to_binary("212.191.99.71")
+
+
+result = "".join([x[0] for x in list(itertools.takewhile(lambda x: x[0] == x[1], zip(first_ip, second_ip)))])
+mask_bit = str(len("".join(result.split("."))))
+address = result + ip_generator(len(result))
+print("network addrss:  " + address)
+print("mask bit " + mask_bit)
