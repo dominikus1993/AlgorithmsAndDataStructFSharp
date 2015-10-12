@@ -20,7 +20,7 @@ def ip_generator(num):
     return "".join(map(lambda x: '.' if x % 9 == 0  else '0' ,[ x for x in range(num + 1,36)]))
 
 def mask_generator(num):
-    return "".join(map(lambda x: '.' if x % 9 == 0  else '1' if x <= (num + 3) else '0' ,[ x for x in range(1,36)]))
+    return "".join(map(lambda x: '.' if x % 9 == 0  else '1' if x <= (num + (0 if num < 9 else 1 if num < 17 else 2 if num <25 else 3)) else '0' ,[ x for x in range(1,36)]))
 
 def network_operations(ip,mask):
     def operations(filter_func):
